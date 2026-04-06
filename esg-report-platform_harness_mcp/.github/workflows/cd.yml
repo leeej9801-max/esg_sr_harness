@@ -1,0 +1,20 @@
+name: CD
+
+on:
+  push:
+    branches: [develop, main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Build Docker image
+        run: |
+          if [ -f Dockerfile ]; then docker build -t esg-report-platform .; else echo "No Dockerfile yet"; fi
+
+      - name: Deploy Placeholder
+        run: |
+          echo "Replace with SSH/EC2 deploy script"
